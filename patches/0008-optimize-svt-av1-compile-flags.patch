@@ -1,0 +1,19 @@
+diff --git a/contrib/svt-av1/module.defs b/contrib/svt-av1/module.defs
+index a63058238..47f1bd869 100644
+--- a/contrib/svt-av1/module.defs
++++ b/contrib/svt-av1/module.defs
+@@ -26,11 +26,9 @@ else
+     endif
+ endif
+ 
+-ifeq (on,$(GCC.lto))
+-    SVT-AV1.CONFIGURE.extra += -DSVT_AV1_LTO=ON
+-else ifeq (off,$(GCC.lto))
+-    SVT-AV1.CONFIGURE.extra += -DSVT_AV1_LTO=OFF
+-endif
++SVT-AV1.CONFIGURE.extra += -DSVT_AV1_LTO=OFF
++SVT-AV1.CONFIGURE.extra += -DCMAKE_CXX_FLAGS_RELEASE="-flto -DNDEBUG -O2"
++SVT-AV1.CONFIGURE.extra += -DCMAKE_C_FLAGS_RELEASE="-flto -DNDEBUG -O2"
+ 
+ ifeq (native,$(GCC.cpu))
+     SVT-AV1.CONFIGURE.extra += -DNATIVE=ON
