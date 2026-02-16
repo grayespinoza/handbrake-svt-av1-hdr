@@ -9,7 +9,7 @@ index 7da8b440a..c5748def0 100644
 -    if (job->encoder_tune != NULL && strstr("ms-ssim", job->encoder_tune) != NULL)
 +    if (job->encoder_tune != NULL && strstr("grain", job->encoder_tune) != NULL)
      {
-         param->tune = 4;
+         param->tune = 5;
      }
 diff --git a/libhb/handbrake/av1_common.h b/libhb/handbrake/av1_common.h
 index 50ea96fd0..d1fc31ceb 100644
