@@ -29,6 +29,7 @@ for (( i=1; i <= "$#"; i++ )); do
 			fi
 			rm -rf HandBrake
 			git clone https://github.com/HandBrake/HandBrake.git
+			git -C HandBrake checkout 4f0f5feedeee0fd46d862908cd7d9867e7530bcb
 			;;
 		-*)
 			echo "${!i} option doesn't exists!"
