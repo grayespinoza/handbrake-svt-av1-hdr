@@ -1,0 +1,62 @@
+name: CD
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build on Arch
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+      - name: Rust Cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/git/db/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+      - name: Set Up Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Install cargo-c
+        run: |
+          cargo install cargo-c@0.10.22+cargo-0.96.0 --locked
+      - name: Build HandBrake-svt-av1-hdr
+        id: makepkg
+        uses: edlanglois/pkgbuild-action@v1.1.9
+      - name: Upload HandBrake-svt-av1-hdr Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: HandBrakePKG
+          path: ${{ steps.makepkg.outputs.pkgfile0 }}
+  publish:
+    name: Publish Stable Release
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+      - name: Download Artifact - PKG Arch Linux
+        uses: actions/download-artifact@v8
+        with:
+          name: HandBrakePKG
+          path: arch/
+      - name: Generate SHA256 Hashes
+        run: |
+          cd arch
+          sha256sum * > sha256.txt
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: false
+          artifactErrorsFailBuild: true
+          artifacts: "arch/*"
+          immutableCreate: true
+          name: HandBrake ${{ github.ref_name }}
+          prerelease: false
+          replacesArtifacts: false
+          token: ${{ secrets.GITHUB_TOKEN }}
