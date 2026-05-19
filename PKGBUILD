@@ -79,11 +79,12 @@ makedepends=(
   "${_guideps[@]}"
 )
 options=('!lto') # https://bugs.archlinux.org/task/72600
-source=("HandBrake::git+https://github.com/HandBrake/HandBrake.git#tag=${_commit}" "HandBrake-SVT-AV1-HDR::git+https://github.com/grayespinoza/handbrake-svt-av1-hdr.git")
+source=("HandBrake::git+https://github.com/HandBrake/HandBrake.git#commit=${_commit}" "HandBrake-SVT-AV1-HDR::git+https://github.com/grayespinoza/handbrake-svt-av1-hdr.git")
 sha256sums=('SKIP' 'SKIP')
 
 prepare() {
-:
+  cd "${srcdir}"
+  ./HandBrake-SVT-AV1-HDR/patch.sh
 }
 
 setup_compiler() {
@@ -105,7 +106,6 @@ setup_compiler() {
 }
 
 build() {
-  ./HandBrake-SVT-AV1-HDR/patch.sh
   setup_compiler
 
   local -a CONFIGURE_OPTIONS=(
