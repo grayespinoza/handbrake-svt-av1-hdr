@@ -52,8 +52,3 @@ for filename in $BASEDIR/patches/*.patch; do
     echo $filename
     patch -t -N -p1 -d $src_dir < "$filename"  || exit 1
 done
-
-# The flatpak build refers to the latest commit, so we add a commit that includes the patches
-cd $src_dir
-git add .
-git -c user.name='deadbeef' -c user.email='deadbeef' commit -m "Patch"
