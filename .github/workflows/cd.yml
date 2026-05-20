@@ -19,7 +19,7 @@ jobs:
             ~/.cargo/git/db/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-c-0.10.22
           restore-keys: ${{ runner.os }}-cargo-
       - name: Set Up Rust
         uses: dtolnay/rust-toolchain@stable
