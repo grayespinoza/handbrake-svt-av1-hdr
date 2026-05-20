@@ -1,11 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
 BASEDIR=$(dirname "$0")
 src_dir="HandBrake"
 help="Usage: patch.sh [src_dir=\"HandBrake\"] [options]
 
-The src_dir is the directory that contains the HandBrake source code (defaults to \"HandBrake\)
--c --clone -> option that clone the repo to src_dir
+The src_dir is the directory that contains the HandBrake source code (defaults to \"HandBrake\")
+-c --clone -> option that clones the repo to src_dir
 -h --help  -> print usage message
 
 If no directory is found, the program exits"
@@ -32,7 +33,7 @@ for (( i=1; i <= "$#"; i++ )); do
 			git -C HandBrake checkout 4f0f5feedeee0fd46d862908cd7d9867e7530bcb
 			;;
 		-*)
-			echo "${!i} option doesn't exists!"
+			echo "${!i} option doesn't exist!"
 			echo "$help"
 			exit 1
 			;;
@@ -43,13 +44,13 @@ for (( i=1; i <= "$#"; i++ )); do
 done
 
 if [ ! -d "$src_dir" ]; then
-	echo "$src_dir directory doesn't exists!"
+	echo "$src_dir directory doesn't exist!"
 	echo "$help"
 	exit 1
 fi
 
 
-for filename in $BASEDIR/patches/*.patch; do
-    echo $filename
-    patch -t -N -p1 -d $src_dir < "$filename"  || exit 1
+for filename in "$BASEDIR"/patches/*.patch; do
+    echo "$filename"
+    patch -t -N -p1 -d "$src_dir" < "$filename"
 done
