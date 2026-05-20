@@ -13,8 +13,7 @@ pkgname=(
 readonly _commit=4f0f5feedeee0fd46d862908cd7d9867e7530bcb
 
 pkgver() {
-  git -C HandBrake/ gc --auto --prune=now
-  git -C HandBrake/ describe ${_commit} | sed -e 's/^v//g' -e 's/-/.r/' -e 's/-/./'
+  git -C HandBrake/ describe "${_commit}" | sed -e 's/^v//g' -e 's/-/.r/' -e 's/-/./'
 }
 
 pkgver=1.11.1.r9.g4f0f5feed
@@ -88,9 +87,9 @@ prepare() {
 }
 
 setup_compiler() {
-  export CC="/usr/bin/clang"
+  export CC=clang
   unset CFLAGS
-  export CXX="/usr/bin/clang++"
+  export CXX=clang++
   unset CXXFLAGS
   export CPP="/usr/bin/clang-cpp"
   export LD="/usr/bin/lld"
