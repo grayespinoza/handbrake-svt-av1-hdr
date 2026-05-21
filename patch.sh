@@ -12,45 +12,43 @@ The src_dir is the directory that contains the HandBrake source code (defaults t
 If no directory is found, the program exits"
 
 if [ "$#" -gt 2 ]; then
-    echo "$help"
-	exit 1
+  echo "$help"
+  exit 1
 fi
 
-
-for (( i=1; i <= "$#"; i++ )); do
-	case ${!i} in
-		-h | --help)
-			echo "$help"
-			exit 1
-			;;
-		-c | --clone)
-			if [ "$i" -lt "$#" ]; then
-				echo "$help"
-				exit 1
-			fi
-			rm -rf HandBrake
-			git clone https://github.com/HandBrake/HandBrake.git
-			git -C HandBrake checkout 4f0f5feedeee0fd46d862908cd7d9867e7530bcb
-			;;
-		-*)
-			echo "${!i} option doesn't exist!"
-			echo "$help"
-			exit 1
-			;;
-		*)
-			src_dir=$1
-			;;
-	esac
+for ((i = 1; i <= "$#"; i++)); do
+  case ${!i} in
+    -h | --help)
+      echo "$help"
+      exit 1
+      ;;
+    -c | --clone)
+      if [ "$i" -lt "$#" ]; then
+        echo "$help"
+        exit 1
+      fi
+      rm -rf HandBrake
+      git clone https://github.com/HandBrake/HandBrake.git
+      git -C HandBrake checkout 4f0f5feedeee0fd46d862908cd7d9867e7530bcb
+      ;;
+    -*)
+      echo "${!i} option doesn't exist!"
+      echo "$help"
+      exit 1
+      ;;
+    *)
+      src_dir=$1
+      ;;
+  esac
 done
 
 if [ ! -d "$src_dir" ]; then
-	echo "$src_dir directory doesn't exist!"
-	echo "$help"
-	exit 1
+  echo "$src_dir directory doesn't exist!"
+  echo "$help"
+  exit 1
 fi
 
-
 for filename in "$BASEDIR"/patches/*.patch; do
-    echo "$filename"
-    patch -t -N -p1 -d "$src_dir" < "$filename"
+  echo "$filename"
+  patch -t -N -p1 -d "$src_dir" <"$filename"
 done
