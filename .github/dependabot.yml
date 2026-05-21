@@ -1,12 +1,13 @@
+---
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "12:00"
-      timezone: "US/Pacific"
+      interval: weekly
+      day: monday
+      time: 12:00
+      timezone: US/Pacific
     groups:
       updates:
         patterns:
@@ -15,6 +16,6 @@ updates:
           - patch
           - minor
     assignees:
-      - "grayespinoza"
+      - grayespinoza
     commit-message:
-      prefix: "chore"
+      prefix: chore
