@@ -1,11 +1,12 @@
-# Maintainer: Holger Obermaier <holgerob@gmx.de>
-# Contributor: Evangelos Foutras <evangelos@foutrelis.com>
-# Contributor: Giovanni Scafora <giovanni@archlinux.org>
-# Contributor: Sebastien Piccand <sebcactus gmail com>
+# Maintainer: Gray Espinoza <grey at grayespinoza dot dev>
+# Contributor: Holger Obermaier <holgerob at gmx dot de>
+# Contributor: Evangelos Foutras <evangelos at foutrelis dot com>
+# Contributor: Giovanni Scafora <giovanni at archlinux dot org>
+# Contributor: Sebastien Piccand <sebcactus at gmail dot com>
 
 pkgname=(
-  'handbrake-svt-av1-hdr-llvm-optimized'
-  'handbrake-svt-av1-hdr-llvm-optimized-cli'
+  'handbrake-svt-av1-hdr'
+  'handbrake-svt-av1-hdr-cli'
 )
 
 # Follow HandBrake's most current stable branch 1.11.x
@@ -20,7 +21,7 @@ pkgver=1.11.1.r9.g4f0f5feed
 pkgrel=1
 arch=('x86_64')
 url="https://handbrake.fr/"
-license=('GPL')
+license=('GPL-2.0-or-later')
 _commondeps=(
   'bzip2'
   'fribidi'
@@ -126,8 +127,8 @@ build() {
   make -C build
 }
 
-package_handbrake-svt-av1-hdr-llvm-optimized() {
-  pkgdesc="Multithreaded video transcoder optimized with LLVM"
+package_handbrake-svt-av1-hdr() {
+  pkgdesc="Multithreaded video transcoder supporting SVT-AV1-HDR"
   depends=(
     'desktop-file-utils'
     'hicolor-icon-theme'
@@ -151,8 +152,8 @@ package_handbrake-svt-av1-hdr-llvm-optimized() {
   rm "${pkgdir}/usr/bin/HandBrakeCLI"
 }
 
-package_handbrake-svt-av1-hdr-llvm-optimized-cli() {
-  pkgdesc="Multithreaded video transcoder optimized with LLVM (CLI)"
+package_handbrake-svt-av1-hdr-cli() {
+  pkgdesc="Multithreaded video transcoder supporting SVT-AV1-HDR (CLI)"
   depends=("${_commondeps[@]}")
   optdepends=(
     'intel-media-sdk: Intel QuickSync support'
