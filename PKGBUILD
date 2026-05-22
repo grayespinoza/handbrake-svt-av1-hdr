@@ -84,7 +84,10 @@ sha256sums=('SKIP' 'SKIP')
 
 prepare() {
   cd "${srcdir}"
-  ./HandBrake-SVT-AV1-HDR/patch.sh
+  for filename in HandBrake-SVT-AV1-HDR/patches/*.patch; do
+    echo "Applying $(basename "$filename")"
+    patch -t -N -p1 -d HandBrake <"$filename"
+  done
 }
 
 setup_compiler() {
