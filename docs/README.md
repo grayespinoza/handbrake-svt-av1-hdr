@@ -14,7 +14,7 @@ paru -S handbrake-svt-av1-hdr
 
 ### Docker
 
-Run as a web-accessible container:
+Run as a [web-accessible container](https://github.com/grayespinoza/docker-handbrake-svt-av1-hdr):
 
 #### Using `docker-compose`:
 
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
 ```
 
-#### Using `docker` command line tool:
+#### Using `docker run`:
 
 ```shell
 docker run -d \
