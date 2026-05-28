@@ -9,7 +9,7 @@ index 992313921..d01b1176c 100644
 -SVT-AV1.FETCH.url     = https://github.com/HandBrake/HandBrake-contribs/releases/download/contribs2/SVT-AV1-v4.1.0.tar.gz
 -SVT-AV1.FETCH.url    += https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v4.1.0/SVT-AV1-v4.1.0.tar.gz
 -SVT-AV1.FETCH.sha256  = 6c4c0c44ff0ba3d136d6f57f3a707f9de8e9c866f50f809c1d22a43f0d8c9583
-+SVT-AV1.FETCH.url     = https://github.com/grayespinoza/handbrake-svt-av1-hdr/releases/download/contribs/svt-av1-hdr-b90fe24.tar.gz
-+SVT-AV1.FETCH.sha256  = 2fff15494b0753fc17ad393b33f3e783929b449960a18d99af9b45c3b2eead34
++SVT-AV1.FETCH.url     = https://github.com/grayespinoza/handbrake-svt-av1-hdr/releases/download/contribs/svt-av1-hdr-96eae10.tar.gz
++SVT-AV1.FETCH.sha256  = 2795597c69731885214b4984c1ee199ceaf5844c3e210dcdb7b34cfe4bcbf162
 
  SVT-AV1.GCC.args.c_std =

@@ -22,7 +22,7 @@ Run as a [web-accessible container](https://github.com/grayespinoza/docker-handb
 ---
 services:
   handbrake-web:
-    image: ghcr.io/grayespinoza/handbrake-svt-av1-hdr:v1.11.1-svtav1hdr.b90fe24
+    image: ghcr.io/grayespinoza/handbrake-svt-av1-hdr:v1.11.1-svtav1hdr.96eae10
     container_name: handbrake-web
     environment:
       - PUID=1000
@@ -50,7 +50,7 @@ docker run -d \
   -p 3001:3001 \
   --shm-size="1gb" \
   --restart unless-stopped \
-  ghcr.io/grayespinoza/handbrake-svt-av1-hdr:v1.11.1-svtav1hdr.b90fe24
+  ghcr.io/grayespinoza/handbrake-svt-av1-hdr:v1.11.1-svtav1hdr.96eae10
 ```
 
 ## Reporting Issues
